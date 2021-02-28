@@ -9,7 +9,6 @@ const SignUp = () => {
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [validated, setValidated] = useState(false);
   const [form, setForm]           = useState({
     fullName: '',
     email: '',
@@ -27,7 +26,6 @@ const SignUp = () => {
     console.log("error", error);
     if(!error.valid){
       setErrors(error);
-      setValidated(true);
       setLoading(false);
     } else {
       //TODO: api call with backend to sign up the user
