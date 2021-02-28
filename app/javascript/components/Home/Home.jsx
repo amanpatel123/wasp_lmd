@@ -1,5 +1,6 @@
 import React from 'react'
-import { Navbar, Nav, Row, Col, Button } from 'react-bootstrap';
+import { Navbar, Nav, Container, Row, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import DeliveryIcon from '../../assets/icons/last-mile-routing.svg';
 import './Home.scss';
 
@@ -8,15 +9,15 @@ const Home = () => {
     <div>
       <div className="header">
         <Navbar collapseOnSelect expand="sm">
-          <Navbar.Brand href="#home">Last Mile Delivery</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">Last Mile Delivery</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" /> 
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
             </Nav> 
             <Nav>
-              <Nav.Link href="#deets">Research</Nav.Link>
-              <Nav.Link href="#deets">Contact Us</Nav.Link>
-              <Nav.Link eventKey={2} href="#memes">
+              <Nav.Link as={Link} to="/signup">Research</Nav.Link>
+              <Nav.Link as={Link} to="/signup">Contact Us</Nav.Link>
+              <Nav.Link as={Link} to="/signup">
                 Log In
               </Nav.Link>
             </Nav>
