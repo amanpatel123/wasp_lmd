@@ -23,13 +23,14 @@ const SignUp = () => {
       <Header hideLinks={true} />
 
       <div className="main-content">
-        <Container className="Container justify-content-md-center">   
-          <div className="title">
-            <h1>Register</h1> 
+        <Container className="Container justify-content-xs-center">   
+          <div className="title-box">
+            <p className="title-one">Get Your Delivery Done</p>
+            <h1 className="title-two">Create Your Account</h1> 
           </div>    
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
-            <Form.Row>
-              <Form.Group as={Col} xs={12} controlId="validationCustom01">
+            <Form.Row className="justify-content-md-center">
+              <Form.Group as={Col} xs={12} md={8}>
                 <Form.Label>First Name</Form.Label>
                 <Form.Control
                   required
@@ -38,8 +39,8 @@ const SignUp = () => {
                 />
               </Form.Group>
             </Form.Row>
-            <Form.Row>
-              <Form.Group as={Col} xs={12} controlId="validationCustom01">
+            <Form.Row className="justify-content-md-center">
+              <Form.Group as={Col} xs={12} md={8}>
                 <Form.Label>Last Name</Form.Label>
                 <Form.Control
                   required
@@ -48,8 +49,8 @@ const SignUp = () => {
                 />
               </Form.Group>
             </Form.Row>
-            <Form.Row>
-              <Form.Group as={Col} xs={12} controlId="validationCustom01">
+            <Form.Row className="justify-content-md-center">
+              <Form.Group as={Col} xs={12} md={8}>
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   required
@@ -58,8 +59,8 @@ const SignUp = () => {
                 />
               </Form.Group>
             </Form.Row>
-            <Form.Row>
-              <Form.Group as={Col} xs={12} controlId="validationCustom01">
+            <Form.Row className="justify-content-md-center">
+              <Form.Group as={Col} xs={12} md={8}>
                 <Form.Label>Confirm Email</Form.Label>
                 <Form.Control
                   required
@@ -68,8 +69,8 @@ const SignUp = () => {
                 />
               </Form.Group>
             </Form.Row>
-            <Form.Row>
-              <Form.Group as={Col} xs={12} controlId="validationCustom01">
+            <Form.Row className="justify-content-md-center">
+              <Form.Group as={Col} xs={12} md={8}>
                 <Form.Label>Phone Number</Form.Label>
                 <Form.Control
                   required
