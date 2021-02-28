@@ -109,6 +109,15 @@ const Login = () => {
                 </Button>
               </Form.Group>
             </Form.Row>
+
+            <Form.Row className="justify-content-md-center">
+              <Form.Group as={Col} xs={12} md={4}>
+                <div className="bottom-box">
+                  <span>New to Last Mile?  </span>
+                  <Link to="/signup">Create an account</Link>
+                </div>
+              </Form.Group>
+            </Form.Row>
           </Form>
         </Container>
       </div>
