@@ -7,6 +7,7 @@ import './SignUp.scss';
 
 const SignUp = () => {
 
+  const [loading, setLoading] = useState(false);
   const [validated, setValidated] = useState(false);
   const [form, setForm]           = useState({
     fullName: '',
@@ -17,8 +18,19 @@ const SignUp = () => {
   })
 
   const handleSubmit = (event) => {
-    const error = SignUpValidation(form);
+    // prevent page from refreshing    
     event.preventDefault();
+    setLoading(true);
+    // validate the form
+    const error = SignUpValidation(form);
+
+    if(!error.valid){
+      setValidated(true);
+      setLoading(false);
+    } else {
+      //TODO: api call with backend to sign up the user
+      setLoading(false);
+    }
   };
 
   const updateForm = (event) => {
