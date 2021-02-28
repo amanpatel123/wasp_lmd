@@ -1,4 +1,4 @@
-import { ValidationEmail } from '../Utilities/validations';
+import { ValidationEmail } from '../../Utilities/validations';
 
 export const SignUpValidation = (form) => {
   let error = {};

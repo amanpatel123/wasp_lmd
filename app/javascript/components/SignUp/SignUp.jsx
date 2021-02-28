@@ -1,8 +1,9 @@
 import React, { useState }from 'react'
-import { Container, Form, Col, Button } from 'react-bootstrap';
+import { Container, Form } from 'react-bootstrap';
 import { Header } from '../Header';
 
 import { DefaultForm } from './DefaultForm';
+import { DriverForm } from './DriverForm/DriverForm';
 import './SignUp.scss';
 
 const SignUp = () => {
@@ -34,10 +35,15 @@ const SignUp = () => {
             </Form.Row> 
           </Form>
 
-          <DefaultForm />
+          {
+            isDriver ?
+            <DriverForm />
+            :
+            <DefaultForm />
+          }
+        
         </Container>
       </div>
-
     </div>
   )
 }

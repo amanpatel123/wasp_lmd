@@ -1,6 +1,6 @@
 import React, { useState }from 'react'
 import { Form, Col, Button } from 'react-bootstrap';
-import { SignUpValidation } from '../validation';
+import { SignUpValidation } from './validation';
 
 import './DefaultForm.scss';
 
