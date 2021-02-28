@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import { HelloWorld } from '../HelloWorld';
+import { Home } from '../Home';
+import '../../style/application.scss';
 
 const App = () => {
   return (
     <Router>
-      <HelloWorld greeting="Lets Go MotherFuckaaa"/>
+      <Home/>
     </Router>
   );
 }
