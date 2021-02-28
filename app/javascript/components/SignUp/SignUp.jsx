@@ -7,6 +7,7 @@ import './SignUp.scss';
 
 const SignUp = () => {
 
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [validated, setValidated] = useState(false);
   const [form, setForm]           = useState({
@@ -23,8 +24,9 @@ const SignUp = () => {
     setLoading(true);
     // validate the form
     const error = SignUpValidation(form);
-
+    console.log("error", error);
     if(!error.valid){
+      setErrors(error);
       setValidated(true);
       setLoading(false);
     } else {
@@ -50,7 +52,7 @@ const SignUp = () => {
             <p className="title-one">Get Your Delivery Done</p>
             <h1 className="title-two">Create Your Account</h1> 
           </div>    
-          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <Form noValidate onSubmit={handleSubmit}>
             <Form.Row className="justify-content-md-center">
               <Form.Group as={Col} xs={12} md={8}>
                 <Form.Label>Full Name</Form.Label>
@@ -60,7 +62,9 @@ const SignUp = () => {
                   name="fullName"
                   value={form.fullName}
                   onChange={updateForm}
+                  isInvalid={errors && errors.fullName}
                 />
+                <Form.Control.Feedback type="invalid">{errors.fullName}</Form.Control.Feedback>
               </Form.Group>
             </Form.Row>
             <Form.Row className="justify-content-md-center">
@@ -72,7 +76,9 @@ const SignUp = () => {
                   name="email"
                   value={form.email}
                   onChange={updateForm}
+                  isInvalid={errors && errors.email}
                 />
+                <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
               </Form.Group>
             </Form.Row>
             <Form.Row className="justify-content-md-center">
@@ -84,7 +90,9 @@ const SignUp = () => {
                   name="password"
                   value={form.password}
                   onChange={updateForm}
+                  isInvalid={errors && errors.password}
                 />
+                <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
               </Form.Group>
             </Form.Row>
             <Form.Row className="justify-content-md-center">
@@ -96,12 +104,14 @@ const SignUp = () => {
                   name="confirmPassword"
                   value={form.confirmPassword}
                   onChange={updateForm}
+                  isInvalid={errors && errors.confirmPassword}
                 />
+                <Form.Control.Feedback type="invalid">{errors.confirmPassword}</Form.Control.Feedback>
               </Form.Group>
             </Form.Row>
             <Form.Row className="justify-content-md-center">
               <Form.Group as={Col} xs={12} md={8}>
-                <Button className="button" disabled={!true} type="submit">
+                <Button className="button" disabled={loading} type="submit">
                   Create account
                 </Button>
                 <span className="agreement">
