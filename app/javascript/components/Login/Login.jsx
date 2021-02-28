@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Form, Col, Button } from 'react-bootstrap';
 
+import { LoginValidation } from './validation'; 
 import './Login.scss';
 const Login = () => {
 
@@ -17,13 +18,20 @@ const Login = () => {
     event.preventDefault();
     setLoading(true);
     // validate the form
+    setErrors({});
     const error = LoginValidation(form);
-    console.log("error", error);
+
     if(!error.valid){
       setErrors(error);
       setLoading(false);
     } else {
+
       //TODO: api call with backend to sign up the user
+      if(isDriver){
+         
+      } else {
+
+      }
       setLoading(false);
     }
   };
@@ -38,6 +46,7 @@ const Login = () => {
   const handleSwitch = (e) => {
     setIsDriver(e.target.checked);
   }
+
   return (
     <div>
       {/* <Header hideLinks={true} /> */}
@@ -68,7 +77,7 @@ const Login = () => {
                   required
                   type="email"
                   name="email"
-                  value={form.email}
+                  value={form.email || ''}
                   onChange={updateForm}
                   isInvalid={errors && errors.email}
                 />
@@ -82,7 +91,7 @@ const Login = () => {
                   required
                   type="password"
                   name="password"
-                  value={form.password}
+                  value={form.password || ''}
                   onChange={updateForm}
                   isInvalid={errors && errors.password}
                 />
@@ -100,7 +109,6 @@ const Login = () => {
         </Container>
       </div>
     </div>
-    
   )
 }
 
