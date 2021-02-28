@@ -1,6 +1,3 @@
-.header {
-  padding: 0 50px;
-}
 .box-content {
     padding: 7em 0em;
     background-color: #e7f3ff;
@@ -37,9 +34,7 @@
 }
 
 @media (max-width: 568px) {
-    .header {
-        padding: 0;
-      }
+
     .box-content {
         font-size: 1.6rem;
         padding-top: 3rem;

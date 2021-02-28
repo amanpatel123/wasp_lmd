@@ -1,29 +1,15 @@
 import React from 'react'
-import { Navbar, Nav, Container, Row, Col, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Header } from '../Header';
+
 import DeliveryIcon from '../../assets/icons/last-mile-routing.svg';
 import './Home.scss';
 
 const Home = () => {
   return (
     <div>
-      <div className="header">
-        <Navbar collapseOnSelect expand="sm">
-          <Navbar.Brand as={Link} to="/">Last Mile Delivery</Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" /> 
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto">
-            </Nav> 
-            <Nav>
-              <Nav.Link as={Link} to="/signup">Research</Nav.Link>
-              <Nav.Link as={Link} to="/signup">Contact Us</Nav.Link>
-              <Nav.Link as={Link} to="/signup">
-                Log In
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-      </div>
+      <Header />
+
       <div className="main-content" >
         <section className="box-content">
           <Container>
