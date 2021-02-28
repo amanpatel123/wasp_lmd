@@ -1,5 +1,5 @@
 import React, { useState }from 'react'
-import { Container, Form, Col, Row, InputGroup } from 'react-bootstrap';
+import { Container, Form, Col, Button } from 'react-bootstrap';
 import { Header } from '../Header';
 
 import './SignUp.scss';
@@ -31,54 +31,51 @@ const SignUp = () => {
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Row className="justify-content-md-center">
               <Form.Group as={Col} xs={12} md={8}>
-                <Form.Label>First Name</Form.Label>
+                <Form.Label>Full Name</Form.Label>
                 <Form.Control
                   required
                   type="text"
-                  placeholder="John"
                 />
               </Form.Group>
             </Form.Row>
             <Form.Row className="justify-content-md-center">
               <Form.Group as={Col} xs={12} md={8}>
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="Wick"
-                />
-              </Form.Group>
-            </Form.Row>
-            <Form.Row className="justify-content-md-center">
-              <Form.Group as={Col} xs={12} md={8}>
-                <Form.Label>Email</Form.Label>
+                <Form.Label>Email Address</Form.Label>
                 <Form.Control
                   required
                   type="email"
-                  placeholder="me@gmail.com"
                 />
               </Form.Group>
             </Form.Row>
             <Form.Row className="justify-content-md-center">
               <Form.Group as={Col} xs={12} md={8}>
-                <Form.Label>Confirm Email</Form.Label>
+                <Form.Label>Password</Form.Label>
                 <Form.Control
                   required
-                  type="email"
-                  placeholder="me@gmail.com"
+                  type="password"
                 />
               </Form.Group>
             </Form.Row>
             <Form.Row className="justify-content-md-center">
               <Form.Group as={Col} xs={12} md={8}>
-                <Form.Label>Phone Number</Form.Label>
+                <Form.Label>Confirm Password</Form.Label>
                 <Form.Control
                   required
-                  type="number"
-                  placeholder="255-255-2555"
+                  type="password"
                 />
               </Form.Group>
             </Form.Row>
+            <Form.Row className="justify-content-md-center">
+              <Form.Group as={Col} xs={12} md={8}>
+                <Button className="button" disabled={!true}>
+                  Create account
+                </Button>
+                <span className="agreement">
+                  By creating an account, you agree to the Term of Service and Privacy Statment. Let us know if you have any conerns regarding our policies.
+                </span>
+              </Form.Group>
+            </Form.Row>
+
           </Form>
         </Container>
       </div>
