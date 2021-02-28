@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import './Header.scss';
 
 const Header = ({hideLinks = false}) => {
+  console.log("hidelinks", hideLinks)
   return (
     <div className="header">
       <Navbar collapseOnSelect expand="sm">
@@ -13,13 +14,20 @@ const Header = ({hideLinks = false}) => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
           </Nav> 
-          <Nav>
-            <Nav.Link as={Link} to="/signup">Research</Nav.Link>
-            <Nav.Link as={Link} to="/signup">Contact Us</Nav.Link>
-            <Nav.Link as={Link} to="/signup">
-              Log In
-            </Nav.Link>
-          </Nav>
+          {
+            !hideLinks ?
+            <Nav>
+              <Nav.Link as={Link} to="/signup">Research</Nav.Link>
+              <Nav.Link as={Link} to="/signup">Contact Us</Nav.Link>
+              <Nav.Link as={Link} to="/signup">
+                Log In
+              </Nav.Link>
+            </Nav>
+            :
+            <Nav>
+              <Nav.Link as={Link} to="/" className="close"> </Nav.Link>
+            </Nav>
+          }
         </Navbar.Collapse>
       </Navbar>
     </div>
