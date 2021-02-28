@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './Header.scss';
 
 const Header = ({hideLinks = false}) => {
-  console.log("hidelinks", hideLinks)
+
   return (
     <div className={ !hideLinks ? "header" : "header-dark" }>
     {

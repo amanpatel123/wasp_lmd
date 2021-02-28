@@ -1,28 +1,38 @@
 import React, { useState }from 'react'
 import { Container, Form, Col, Button } from 'react-bootstrap';
 import { Header } from '../Header';
+import { SignUpValidation } from './validation';
 
 import './SignUp.scss';
 
 const SignUp = () => {
 
   const [validated, setValidated] = useState(false);
+  const [form, setForm]           = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmPassword: ''
+  })
 
   const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    setValidated(true);
+    const error = SignUpValidation(form);
+    event.preventDefault();
   };
+
+  const updateForm = (event) => {
+    setForm({
+      ...form,
+      [event.target.name]: event.target.value
+    });
+  }
 
   return (
     <div>
       <Header hideLinks={true} />
 
-      <div className="main-content">
+      <div className="signup-content">
         <Container className="Container justify-content-xs-center">   
           <div className="title-box">
             <p className="title-one">Get Your Delivery Done</p>
@@ -35,6 +45,9 @@ const SignUp = () => {
                 <Form.Control
                   required
                   type="text"
+                  name="fullName"
+                  value={form.fullName}
+                  onChange={updateForm}
                 />
               </Form.Group>
             </Form.Row>
@@ -44,6 +57,9 @@ const SignUp = () => {
                 <Form.Control
                   required
                   type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={updateForm}
                 />
               </Form.Group>
             </Form.Row>
@@ -53,6 +69,9 @@ const SignUp = () => {
                 <Form.Control
                   required
                   type="password"
+                  name="password"
+                  value={form.password}
+                  onChange={updateForm}
                 />
               </Form.Group>
             </Form.Row>
@@ -62,12 +81,15 @@ const SignUp = () => {
                 <Form.Control
                   required
                   type="password"
+                  name="confirmPassword"
+                  value={form.confirmPassword}
+                  onChange={updateForm}
                 />
               </Form.Group>
             </Form.Row>
             <Form.Row className="justify-content-md-center">
               <Form.Group as={Col} xs={12} md={8}>
-                <Button className="button" disabled={!true}>
+                <Button className="button" disabled={!true} type="submit">
                   Create account
                 </Button>
                 <span className="agreement">
