@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Form, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import { LoginValidation } from './validation'; 
 import './Login.scss';
@@ -52,7 +53,7 @@ const Login = () => {
       {/* <Header hideLinks={true} /> */}
 
       <div className="signin-content">
-        <Container className="Container justify-content-xs-center">   
+        <Container className="Container justify-content-center">   
           <div className="title-box">
             <p className="title-one">Get Your Delivery Done</p>
             <h1 className="title-two">Login</h1> 
@@ -71,7 +72,7 @@ const Login = () => {
 
           <Form noValidate onSubmit={handleSubmit}>
             <Form.Row className="justify-content-md-center">
-              <Form.Group as={Col} xs={12} md={8}>
+              <Form.Group as={Col} xs={12} md={4}>
                 <Form.Label>Email Address</Form.Label>
                 <Form.Control
                   required
@@ -85,8 +86,11 @@ const Login = () => {
               </Form.Group>
             </Form.Row>
             <Form.Row className="justify-content-md-center">
-              <Form.Group as={Col} xs={12} md={8}>
-                <Form.Label>Password</Form.Label>
+              <Form.Group as={Col} xs={12} md={4}>
+                <Form.Row>
+                  <Form.Label as={Col} xs={6}>Password</Form.Label>
+                  <Form.Label as={Col} xs={6} className="d-flex justify-content-end forgot-password"><Link to="/forgot-password">Forgot Password?</Link></Form.Label>
+                </Form.Row>
                 <Form.Control
                   required
                   type="password"
@@ -99,7 +103,7 @@ const Login = () => {
               </Form.Group>
             </Form.Row>
             <Form.Row className="justify-content-md-center">
-              <Form.Group as={Col} xs={12} md={8}>
+              <Form.Group as={Col} xs={12} md={4}>
                 <Button className="button" disabled={loading} type="submit">
                   Login
                 </Button>
