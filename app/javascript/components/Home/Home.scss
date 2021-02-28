@@ -1,0 +1,44 @@
+.box-content {
+    padding: 7em 0em;
+    background-color: #e7f3ff;
+    position: relative;
+
+
+    .right-content {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+.left-content {
+    text-align: left;
+
+    .phrase {
+        font-weight: 800;
+        font-size: 2.35rem;
+        letter-spacing: 1px;
+        padding-bottom: 0;
+        line-height: 1.4;
+        color: #383f47;
+    }
+
+    .sub-phrase-one {
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    .sub-phrase-two {
+        padding: 0.8rem 0rem 2rem;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 568px) {
+    .box-content {
+        font-size: 1.6rem;
+        padding-top: 3rem;
+    }
+    .right-content {
+        padding-top: 2rem;
+    }
+}
