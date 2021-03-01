@@ -1,7 +1,7 @@
 export const LoginValidation = (form) => {
   let error = {};
 
-  const { email, password} = form;
+  const { email, password } = form;
 
   if(!email) error.email = "Invalid Email!";
   if(!password) error.password = "Invalid password!";
