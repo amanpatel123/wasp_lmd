@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Container, Form, Col, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { Header } from '../Header';
 import { LoginValidation } from './validation'; 
 import './Login.scss';
 const Login = () => {
+
+  const history = useHistory();
 
   const [isDriver, setIsDriver] = useState(false);
   const [errors, setErrors] = useState({});
@@ -29,12 +31,8 @@ const Login = () => {
     } else {
 
       //TODO: api call with backend to sign up the user
-      if(isDriver){
-         
-      } else {
-
-      }
       setLoading(false);
+      history.push('/Dashboard');
     }
   };
 
@@ -44,10 +42,6 @@ const Login = () => {
       [event.target.name]: event.target.value
     });
   }
-
-  // const handleSwitch = (e) => {
-  //   setIsDriver(e.target.checked);
-  // }
 
   return (
     <div>
@@ -59,17 +53,6 @@ const Login = () => {
             <p className="title-one">Get Your Delivery Done</p>
             <h1 className="title-two">Login</h1> 
           </div>    
-          {/* <Form className="driver">
-            <Form.Row className="justify-content-center">
-              <Form.Check 
-                type="switch"
-                id="custom-switch"
-                label="Are you a driver?"
-                onChange={handleSwitch}
-                className="check"
-              />
-            </Form.Row> 
-          </Form> */}
 
           <Form noValidate onSubmit={handleSubmit}>
             <Form.Row className="justify-content-md-center">
