@@ -17,10 +17,13 @@ const Header = ({hideLinks = false}) => {
             <Nav className="mr-auto">
             </Nav> 
             <Nav>
-              <Nav.Link as={Link} to="/signup">Research</Nav.Link>
-              <Nav.Link as={Link} to="/signup">Contact Us</Nav.Link>
-              <Nav.Link as={Link} to="/signup">
+              <Nav.Link as={Link} to="/">Research</Nav.Link>
+              <Nav.Link as={Link} to="/">Contact Us</Nav.Link>
+              <Nav.Link as={Link} to="/login">
                 Log In
+              </Nav.Link>
+              <Nav.Link as={Link} to="/signup">
+                Sign up
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

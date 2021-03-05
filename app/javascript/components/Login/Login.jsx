@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Form, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+import { Header } from '../Header';
 import { LoginValidation } from './validation'; 
 import './Login.scss';
 const Login = () => {
@@ -50,7 +51,7 @@ const Login = () => {
 
   return (
     <div>
-      {/* <Header hideLinks={true} /> */}
+      <Header hideLinks={true} />
 
       <div className="signin-content">
         <Container className="Container justify-content-center">   
