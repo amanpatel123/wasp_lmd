@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Header } from '../Header';
+import ReactDOM from 'react-dom';
 
+import Tooltip from './Tooltips';
 import './Dashboard.scss';
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl-csp';
 import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
  
 mapboxgl.workerClass = MapboxWorker;
-
+mapboxgl.accessToken = process.env.MAPBOXGL_ACCESS_TOKEN;
 const hospitals = {
   type: 'FeatureCollection',
   features: [
@@ -35,94 +37,20 @@ const libraries = {
 };
 
 const Dashboard = () => {
-  console.log("hello", process.env.REACT_APP_TOKEN)
+
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const mapContainer = useRef();
-  const [lng, setLng] = useState(-70.9);
-  const [lat, setLat] = useState(42.35);
-  const [zoom, setZoom] = useState(12);
   const tooltipRef = useRef(new mapboxgl.Popup({ offset: 15 }));
 
   useEffect(() => {
-    mapboxgl.accessToken = process.env.MAPBOXGL_ACCESS_TOKEN;
-
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-84.5, 38.05], // starting position
-      zoom: zoom
+      center: [-79.38, 43.65],
+      zoom: 12.5
     });
 
-    map.on('load', function() {
-      map.addLayer({
-        id: 'hospitals',
-        type: 'symbol',
-        source: {
-          type: 'geojson',
-          data: hospitals
-        },
-        layout: {
-          'icon-image': 'hospital-15',
-          'icon-allow-overlap': true
-        },
-        paint: { }
-      });
-      map.addLayer({
-        id: 'libraries',
-        type: 'symbol',
-        source: {
-          type: 'geojson',
-          data: libraries
-        },
-        layout: {
-          'icon-image': 'library-15'
-        },
-        paint: { }
-      });
-    });
-
-    map.on('move', () => {
-
-      setLng(map.getCenter().lng.toFixed(4));
-      setLat(map.getCenter().lat.toFixed(4));
-      setZoom(map.getZoom().toFixed(2));
-    });
-
-    map.on('click', function(e) {
-      // Return any features from the 'libraries' layer whenever the map is clicked
-      var libraryFeatures = map.queryRenderedFeatures(e.point, { layers: ['libraries'] });
-      if (!libraryFeatures.length) {
-        return;
-      }
-      var libraryFeature = libraryFeatures[0];
-    
-      // Using Turf, find the nearest hospital to library clicked
-      var nearestHospital = turf.nearest(libraryFeature, hospitals);
-    
-      // If a nearest library is found
-      if (nearestHospital !== null) {
-        // Update the 'nearest-library' data source to include
-        // the nearest library
-        map.getSource('nearest-hospital').setData({
-          type: 'FeatureCollection',
-          features: [
-            nearestHospital
-          ]
-        });
-        // Create a new circle layer from the 'nearest-library' data source
-        console.log("hello")
-        map.addLayer({
-          id: 'nearest-hospital',
-          type: 'circle',
-          source: 'nearest-hospital',
-          paint: {
-            'circle-radius': 12,
-            'circle-color': '#486DE0'
-          }
-        }, 'hospitals');
-      }
-    });
-
+    // change cursor to pointer when user hovers over a clickable feature
     map.on('mouseenter', e => {
       if (e.features.length) {
         map.getCanvas().style.cursor = 'pointer';
@@ -142,8 +70,10 @@ const Dashboard = () => {
 
         // Create tooltip node
         const tooltipNode = document.createElement('div');
+        console.log("tool", tooltipNode)
         ReactDOM.render(<Tooltip feature={feature} />, tooltipNode);
 
+        console.log("e", e)
         // Set tooltip on map
         tooltipRef.current
           .setLngLat(e.lngLat)
@@ -151,74 +81,17 @@ const Dashboard = () => {
           .addTo(map);
       }
     });
-    // const popup = new mapboxgl.Popup();
-
-    // map.on('mousemove', function(e) {
-    //   var features = map.queryRenderedFeatures(e.point, { layers: ['hospitals', 'libraries'] });
-    //   if (!features.length) {
-    //     popup.remove();
-    //     return;
-    //   }
-    //   var feature = features[0];
-
-    //   popup.setLngLat(feature.geometry.coordinates)
-    //     .setHTML(feature.properties.Name)
-    //     .addTo(map);
-
-    //   map.getCanvas().style.cursor = features.length ? 'pointer' : '';
-    // });
-
-    // map.addSource('nearest-hospital', {
-    //   type: 'geojson',
-    //   data: {
-    //     type: 'FeatureCollection',
-    //     features: [
-    //     ]
-    //   }
-    // });
-
-    map.on('click', function(e) {
-      // Return any features from the 'libraries' layer whenever the map is clicked
-      var libraryFeatures = map.queryRenderedFeatures(e.point, { layers: ['libraries'] });
-      if (!libraryFeatures.length) {
-        return;
-      }
-      var libraryFeature = libraryFeatures[0];
-    
-      // Using Turf, find the nearest hospital to library clicked
-      var nearestHospital = turf.nearest(libraryFeature, hospitals);
-    
-      // If a nearest library is found
-      if (nearestHospital !== null) {
-        // Update the 'nearest-library' data source to include
-        // the nearest library
-        map.getSource('nearest-hospital').setData({
-          type: 'FeatureCollection',
-          features: [
-            nearestHospital
-          ]
-        });
-        // Create a new circle layer from the 'nearest-library' data source
-        map.addLayer({
-          id: 'nearest-hospital',
-          type: 'circle',
-          source: 'nearest-hospital',
-          paint: {
-            'circle-radius': 12,
-            'circle-color': '#486DE0'
-          }
-        }, 'hospitals');
-      }
-    });
+    // Clean up on unmount
     return () => map.remove();
-    }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <div>
+      
       <Header hideLinks={true} isLoggedIn={isLoggedIn} showDashboard={true} />
       <div className="map-outter-container">
         <div className="map-container" ref={mapContainer} />
       </div>
-
     </div>
   )
 }
