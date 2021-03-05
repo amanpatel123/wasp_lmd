@@ -15,9 +15,9 @@ const Dashboard = () => {
   const [lng, setLng] = useState(-70.9);
   const [lat, setLat] = useState(42.35);
   const [zoom, setZoom] = useState(9);
-
+  
   useEffect(() => {
-    mapboxgl.accessToken = '';
+    mapboxgl.accessToken = 'pk.eyJ1IjoicHJha29ydCIsImEiOiJja2x2cGNiMzYwNG56MnZrdjVianlwcnN0In0.RYDGWvJtriPXw-hFSxiAWA';
 
     const map = new mapboxgl.Map({
       container: mapContainer.current,
@@ -30,7 +30,10 @@ const Dashboard = () => {
   return (
     <div>
       <Header hideLinks={true} isLoggedIn={isLoggedIn} showDashboard={true} />
-      <div className="map-container" ref={mapContainer} />
+      <div className="map-outter-container">
+        <div className="map-container" ref={mapContainer} />
+      </div>
+
     </div>
   )
 }

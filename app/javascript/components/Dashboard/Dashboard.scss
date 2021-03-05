@@ -1,9 +1,16 @@
-.map-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
+.map-outter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .map-container {
+        width: 800px;
+        height: 800px;
+        display: block;
+        margin: 0;
+    }
+    
 }
 
 
