@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Form, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+import { Header } from '../Header';
 import { LoginValidation } from './validation'; 
 import './Login.scss';
 const Login = () => {
@@ -44,13 +45,13 @@ const Login = () => {
     });
   }
 
-  const handleSwitch = (e) => {
-    setIsDriver(e.target.checked);
-  }
+  // const handleSwitch = (e) => {
+  //   setIsDriver(e.target.checked);
+  // }
 
   return (
     <div>
-      {/* <Header hideLinks={true} /> */}
+      <Header hideLinks={true} />
 
       <div className="signin-content">
         <Container className="Container justify-content-center">   
@@ -58,7 +59,7 @@ const Login = () => {
             <p className="title-one">Get Your Delivery Done</p>
             <h1 className="title-two">Login</h1> 
           </div>    
-          <Form className="driver">
+          {/* <Form className="driver">
             <Form.Row className="justify-content-center">
               <Form.Check 
                 type="switch"
@@ -68,7 +69,7 @@ const Login = () => {
                 className="check"
               />
             </Form.Row> 
-          </Form>
+          </Form> */}
 
           <Form noValidate onSubmit={handleSubmit}>
             <Form.Row className="justify-content-md-center">

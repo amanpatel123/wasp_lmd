@@ -1,0 +1,14 @@
+.header {
+    padding: 0 50px;
+}
+
+.header-dark {
+    padding: 0 50px;
+    background-color: #343a40 !important
+}
+
+@media (max-width: 568px) {
+    .header, .header-dark {
+        padding: 0;
+    }
+}
