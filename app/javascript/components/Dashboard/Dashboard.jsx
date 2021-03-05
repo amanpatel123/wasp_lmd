@@ -44,7 +44,7 @@ const Dashboard = () => {
   const tooltipRef = useRef(new mapboxgl.Popup({ offset: 15 }));
 
   useEffect(() => {
-    mapboxgl.accessToken = 'pk.eyJ1IjoicHJha29ydCIsImEiOiJja2x2cGNiMzYwNG56MnZrdjVianlwcnN0In0.RYDGWvJtriPXw-hFSxiAWA';
+    mapboxgl.accessToken = process.env.MAPBOXGL_ACCESS_TOKEN;
 
     const map = new mapboxgl.Map({
       container: mapContainer.current,
