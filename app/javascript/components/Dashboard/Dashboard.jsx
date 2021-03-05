@@ -1,53 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Header } from '../Header';
 
 import './Dashboard.scss';
-import MapGL, { GeolocateControl}  from 'react-map-gl';
+import mapboxgl from 'mapbox-gl/dist/mapbox-gl-csp';
+import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
+ 
+mapboxgl.workerClass = MapboxWorker;
+mapboxgl.accessToken = '';
 
-const geolocateStyle = {
-  top: 0,
-  left: 0,
-  margin: 10
-};
-const positionOptions = {enableHighAccuracy: true};
 
 const Dashboard = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [viewport, setViewport] = useState({
-    latitude: 37.8,
-    longitude: 96,
-    zoom: 3,
-    bearing: 0,
-    pitch: 0
-  });
-
+  const mapContainer = useRef();
+  const [lng, setLng] = useState(-70.9);
+  const [lat, setLat] = useState(42.35);
+  const [zoom, setZoom] = useState(9);
+  useEffect(() => {
+    const map = new mapboxgl.Map({
+    container: mapContainer.current,
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [lng, lat],
+    zoom: zoom
+    });
+    return () => map.remove();
+    }, []);
   return (
     <div>
       <Header hideLinks={true} isLoggedIn={isLoggedIn} showDashboard={true} />
-      <div className="map-box" style={{height: '100%', width: '100%'}}>
-        {/* <ReactMapGL
-          {...viewport}
-          width="100%"
-          height="100%"
-          mapboxApiAccessToken=""
-          onViewportChange={(viewport) => setViewport(viewport)}
-        /> */}
-        <MapGL
-          {...viewport}
-          width="100%"
-          height="100%"
-          mapStyle="mapbox://styles/mapbox/dark-v9"
-          onViewportChange={setViewport}
-          mapboxApiAccessToken={""}
-        >
-          <GeolocateControl
-            style={geolocateStyle}
-            positionOptions={positionOptions}
-            trackUserLocation
-            auto
-          />
-        </MapGL>
+      <div className="map-box" style={{height: '1000px', width: '1000px'}}>
+        <div className="map-container" ref={mapContainer} />
       
       </div>
     </div>
