@@ -3,16 +3,10 @@ import { Container, Form } from 'react-bootstrap';
 import { Header } from '../Header';
 
 import { DefaultForm } from './DefaultForm';
-import { DriverForm } from './DriverForm/DriverForm';
 import './SignUp.scss';
 
 const SignUp = () => {
 
-  const [isDriver, setIsDriver] = useState(false);
-
-  const handleSwitch = (e) => {
-    setIsDriver(e.target.checked);
-  }
   return (
     <div>
       <Header hideLinks={true} />
@@ -23,25 +17,7 @@ const SignUp = () => {
             <p className="title-one">Get Your Delivery Done</p>
             <h1 className="title-two">Create Your Account</h1> 
           </div>    
-          <Form className="driver">
-            <Form.Row className="justify-content-center">
-              <Form.Check 
-                type="switch"
-                id="custom-switch"
-                label="Are you a driver?"
-                onChange={handleSwitch}
-                className="check"
-              />
-            </Form.Row> 
-          </Form>
-
-          {
-            isDriver ?
-            <DriverForm />
-            :
-            <DefaultForm />
-          }
-        
+         <DefaultForm />
         </Container>
       </div>
     </div>
