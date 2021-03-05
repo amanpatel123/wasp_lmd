@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import { Home } from '../Home';
+import { Landing } from '../Landing';
 import { SignUp } from '../SignUp';
 import { Login } from '../Login';
 
@@ -12,7 +12,7 @@ const App = () => {
       <Switch>
         <Route
           path="/"
-          render={(props) => <Home {...props} />}
+          render={(props) => <Landing {...props} />}
           exact
         />
         <Route

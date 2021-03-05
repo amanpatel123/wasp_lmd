@@ -3,9 +3,9 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Header } from '../Header';
 
 import DeliveryIcon from '../../assets/icons/last-mile-routing.svg';
-import './Home.scss';
+import './Landing.scss';
 
-const Home = () => {
+const Landing = () => {
   return (
     <div>
       <Header />
@@ -39,4 +39,4 @@ const Home = () => {
   )
 }
 
-export { Home };
+export { Landing };
