@@ -17,7 +17,7 @@ const Dashboard = () => {
   const [zoom, setZoom] = useState(9);
 
   useEffect(() => {
-    mapboxgl.accessToken = '';
+    mapboxgl.accessToken = process.env.MAPBOXGL_ACCESS_TOKEN;
 
     const map = new mapboxgl.Map({
       container: mapContainer.current,
