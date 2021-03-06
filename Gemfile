@@ -12,7 +12,7 @@ gem 'graphql', '~> 1.12', '>= 1.12.5'
 
 # Authentication using jwt
 gem 'devise', '~> 4.7', '>= 4.7.3'
-gem 'devise-jwt', '~> 0.8.1'
+
 gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'

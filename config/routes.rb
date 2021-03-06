@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # Commenting this for now since we are using react and we don't need this 
-  # devise_for :users 
+  devise_for :users, skip: :sessions
   
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
