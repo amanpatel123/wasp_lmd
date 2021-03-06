@@ -1,11 +1,13 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Link, useHistory } from 'react-router-dom';
 
 import './Header.scss';
 
 const Header = ({hideLinks = false, isLoggedIn = false, showDashboard}) => {
 
+  const history = useHistory();
+  
   return (
     <div className={ !hideLinks ? "header" : "header-dark" }>
     {
@@ -51,9 +53,20 @@ const Header = ({hideLinks = false, isLoggedIn = false, showDashboard}) => {
             </Nav> 
             {
               showDashboard?
-              <Nav>
-                <Nav.Link as={Link} to="/Dashboard">Dashboard</Nav.Link>
-              </Nav>:
+              <React.Fragment>
+      
+                <Nav>
+                 <Button id="button" size="sm" onClick={() => history.push('/Request')}>
+                    Make A Request
+                  </Button> 
+                </Nav>
+                <Nav>
+                  <Nav.Link as={Link} to="/Dashboard">Dashboard</Nav.Link>
+                </Nav>
+
+              </React.Fragment>
+
+              :
               <Nav>
                 <Nav.Link as={Link} to="/">Back</Nav.Link>
               </Nav>
