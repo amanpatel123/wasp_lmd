@@ -2,11 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Header } from '../Header';
 import ReactDOM from 'react-dom';
 
-import Tooltip from './Tooltips';
+import { Tooltip } from './Tooltips';
 import './Dashboard.scss';
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl-csp';
 import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
-import { hospitals } from './data';
 
 mapboxgl.workerClass = MapboxWorker;
 mapboxgl.accessToken = process.env.MAPBOXGL_ACCESS_TOKEN;

@@ -13,7 +13,8 @@ export const hospitals = {
     { type: 'Feature', properties: { Name: 'UK Medical Center', Address: '800 Rose St' }, geometry: { type: 'Point', coordinates: [-84.508205, 38.031254] } }
   ]
 };
-const libraries = {
+
+export const libraries = {
   type: 'FeatureCollection',
   features: [
     { type: 'Feature', properties: { Name: 'Village Branch', Address: '2185 Versailles Rd' }, geometry: { type: 'Point', coordinates: [-84.548369, 38.047876] } },
