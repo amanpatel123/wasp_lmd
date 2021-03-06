@@ -69,7 +69,6 @@ const Dashboard = () => {
 
   return (
     <div>
-      
       <Header hideLinks={true} isLoggedIn={isLoggedIn} showDashboard={true} />
       <div className="map-outter-container">
         <div className="map-container" ref={mapContainer} />
