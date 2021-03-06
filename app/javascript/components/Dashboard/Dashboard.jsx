@@ -15,11 +15,15 @@ const Dashboard = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const mapContainer = useRef();
   const tooltipRef = useRef(new mapboxgl.Popup({ offset: 15 }));
-
+  
+  const mapStyle = [
+    'mapbox://styles/mapbox/light-v10',
+    'mapbox://styles/mapbox/streets-v11'
+  ]
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
+      style: mapStyle[0],
       center: [-79.38, 43.65],
       zoom: 12.5
     });
