@@ -12,4 +12,4 @@ const Tooltip = ({ feature }) => {
   );
 };
 
-export default Tooltip;
+export { Tooltip };
