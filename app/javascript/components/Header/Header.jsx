@@ -1,11 +1,13 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Link, useHistory } from 'react-router-dom';
 
 import './Header.scss';
 
-const Header = ({hideLinks = false}) => {
+const Header = ({hideLinks = false, isLoggedIn = false, showDashboard}) => {
 
+  const history = useHistory();
+  
   return (
     <div className={ !hideLinks ? "header" : "header-dark" }>
     {
@@ -19,12 +21,25 @@ const Header = ({hideLinks = false}) => {
             <Nav>
               <Nav.Link as={Link} to="/">Research</Nav.Link>
               <Nav.Link as={Link} to="/">Contact Us</Nav.Link>
-              <Nav.Link as={Link} to="/login">
-                Log In
-              </Nav.Link>
-              <Nav.Link as={Link} to="/signup">
-                Sign up
-              </Nav.Link>
+              {
+                isLoggedIn && showDashboard ?
+                <Nav.Link as={Link} to="/Dashboard">
+                  Dashboard
+                </Nav.Link>
+                :
+                <React.Fragment>
+                  <Nav.Link as={Link} to="/login">
+                    Log In
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/signup">
+                    Sign up
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/Dashboard">
+                   Dashboard
+                  </Nav.Link>
+                </React.Fragment>
+              }
+
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -36,9 +51,27 @@ const Header = ({hideLinks = false}) => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
             </Nav> 
-            <Nav>
-              <Nav.Link as={Link} to="/">Back</Nav.Link>
-            </Nav>
+            {
+              showDashboard?
+              <React.Fragment>
+      
+                <Nav>
+                 <Button id="button" size="sm" onClick={() => history.push('/Request')}>
+                    Make A Request
+                  </Button> 
+                </Nav>
+                <Nav>
+                  <Nav.Link as={Link} to="/Dashboard">Dashboard</Nav.Link>
+                </Nav>
+
+              </React.Fragment>
+
+              :
+              <Nav>
+                <Nav.Link as={Link} to="/">Back</Nav.Link>
+              </Nav>
+            }
+
           </Navbar.Collapse>
         </Navbar>
     }
