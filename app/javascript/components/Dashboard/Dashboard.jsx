@@ -86,9 +86,8 @@ const Dashboard = () => {
     })
 
     map.on('load', async function() {
-      console.log("directionsData",directionsData)
+ 
       directionsData.forEach(src => {
-        console.log("sss",src)
         // Add starting point to the map  
         var endId = src.id + 'end-id';
         var route = src.route.geometry.coordinates;
@@ -164,10 +163,9 @@ const Dashboard = () => {
                 'line-opacity': 0.5
               }
             });
-            console.log("map", map)
           }   
         }
-        map.getSource(src.id).setData(geojson)
+        map.getSource(src.id).setData(geojson);
       });
    });
 
