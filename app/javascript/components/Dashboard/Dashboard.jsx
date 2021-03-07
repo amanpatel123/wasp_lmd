@@ -52,9 +52,10 @@ const Dashboard = () => {
     }
   }    
   
+  // get the route from Mapbox api
   useEffect(() => {
+
     const getAllData = () => {
- 
       const arr = [];
       data.forEach(async source => {
         setIsLoading(true);
@@ -74,6 +75,7 @@ const Dashboard = () => {
     
   }, []);
 
+  // intialize the map and add markers and layers
   useEffect(() => {
 
     var map = new mapboxgl.Map({
