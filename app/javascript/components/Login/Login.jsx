@@ -45,10 +45,9 @@ const Login = () => {
         setLoading(false);
         userSignIn.token && localStorage.setItem('mlToken', userSignIn.token);
         console.log(userSignIn);
-
+        // TODO: Add a condition that if login successful only then push dashboard to history
+        history.push('/Dashboard');
       });      
-      
-      // history.push('/Dashboard');
     }
   };
 
