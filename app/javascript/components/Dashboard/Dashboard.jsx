@@ -17,7 +17,6 @@ const mapStyle = [
 
 const Dashboard = () => {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const mapContainer = useRef();
   const [routesData, setRoutesData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -174,7 +173,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Header hideLinks={true} isLoggedIn={isLoggedIn} showDashboard={true} />
+      <Header hideLinks={true} showDashboard={true} />
       <div className="map-outter-container">
         <div className="map-container" ref={mapContainer} />
       </div>

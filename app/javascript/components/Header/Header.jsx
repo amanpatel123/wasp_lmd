@@ -1,13 +1,19 @@
 import React from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
+import { useCurrentUserQuery } from '../../data/queries';
+
 
 import './Header.scss';
 
-const Header = ({hideLinks = false, isLoggedIn = false, showDashboard}) => {
-
+const Header = ({hideLinks = false, showDashboard}) => {
+  const { data, loading: queryLoading } = useCurrentUserQuery();
+  if (!queryLoading){
+    console.log(data.currentUser);
+    console.log(showDashboard);
+  }
   const history = useHistory();
-  
+
   return (
     <div className={ !hideLinks ? "header" : "header-dark" }>
     {
@@ -22,10 +28,16 @@ const Header = ({hideLinks = false, isLoggedIn = false, showDashboard}) => {
               <Nav.Link as={Link} to="/">Research</Nav.Link>
               <Nav.Link as={Link} to="/">Contact Us</Nav.Link>
               {
-                isLoggedIn && showDashboard ?
-                <Nav.Link as={Link} to="/Dashboard">
-                  Dashboard
-                </Nav.Link>
+                queryLoading ? 'Loading' :
+                data.currentUser
+                ?
+                  <>
+                  <Nav.Link as={Link} to="/Dashboard">
+                    Dashboard
+                  </Nav.Link>
+                  <>Welcome, {data.currentUser.fullName}!</>
+                  </>
+                
                 :
                 <React.Fragment>
                   <Nav.Link as={Link} to="/login">
