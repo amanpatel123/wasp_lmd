@@ -5,7 +5,6 @@ import { Tooltip } from './Tooltips';
 import './Dashboard.scss';
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl-csp';
 import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
-import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css';
 import axios from 'axios';
 import { directionsData } from './data';
 
