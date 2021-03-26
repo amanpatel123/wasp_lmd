@@ -4,6 +4,8 @@ import { Link, useHistory } from 'react-router-dom';
 
 import { Header } from '../Header';
 import { LoginValidation } from './validation'; 
+import { CURRENT_USER_QUERY } from '../../data/queries';
+import { useSignInUserMutation, SIGN_IN_USER_MUTATION } from '../../data/mutations';
 import './Login.scss';
 const Login = () => {
 
@@ -14,14 +16,21 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [form, setForm]           = useState({
     email: '',
-    confirmPassword: ''
+    password: ''
   })
 
+  const [ signIn  ] = useSignInUserMutation({
+    update(cache, { data: { userSignIn } }) {
+      cache.writeQuery({
+        query: CURRENT_USER_QUERY,
+        data: { currentUser: userSignIn.user },
+      });
+    }
+  });
+
   const handleSubmit = (event) => {
-    // prevent page from refreshing    
     event.preventDefault();
     setLoading(true);
-    // validate the form
     setErrors({});
     const error = LoginValidation(form);
 
@@ -29,10 +38,16 @@ const Login = () => {
       setErrors(error);
       setLoading(false);
     } else {
-
-      //TODO: api call with backend to sign up the user
-      setLoading(false);
-      history.push('/Dashboard');
+      
+      signIn({
+        variables: { input: { userEmail: form.email, password: form.password }},
+      }).then(({ data: { userSignIn } }) =>{
+        setLoading(false);
+        userSignIn.token && localStorage.setItem('mlToken', userSignIn.token);
+        console.log(userSignIn);
+        // TODO: Add a condition that if login successful only then push dashboard to history
+        history.push('/Dashboard');
+      });      
     }
   };
 
